@@ -67,12 +67,6 @@ function handleDelete(rowIndex: number) {
 
     async function fetchData() {
 
-
-      const resp = await fetch('http://localhost:5000/api/data')
-      const data = await resp.json()
-
-      if (resp.ok) {console.log('resp', data)}
-
       const response = await fetch('/data/ElectricCarData.csv')
       const file = await response.text()
 
