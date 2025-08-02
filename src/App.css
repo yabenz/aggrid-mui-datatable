@@ -1,14 +1,15 @@
 #root {
+
+  margin: 0;
+  padding: 0;
 }
 
 
 
 .main-container{
-
-  /* display: flex; */
-  /* display: grid; */
-  justify-content: center;
-  
+  justify-content: center;  
   width: 100%;
+  margin: 0;
+  padding: 0;
 
 }
