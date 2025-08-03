@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const app = express();
 const PORT = 5000;
+const tableName = 'ElectricCars'; // <--- table name
 
 app.use(cors());
 app.use(express.json());
@@ -13,7 +14,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'cars',
+  database: 'cars', // <--- databasename
 });
 
 connection.connect((err) => {
@@ -29,7 +30,7 @@ app.get('/api/data', (req, res) => {
   const { field, operator, value } = req.query;
 
   // Base query
-  let sql = 'SELECT * FROM ElectricCars';
+  let sql = `SELECT * FROM \`${tableName}\``;
   let params = [];
 
   if (field && operator) {
@@ -84,11 +85,10 @@ app.get('/api/data', (req, res) => {
   });
 });
 
-
 // GET one row by ID
 app.get('/api/data/:id', (req, res) => {
   const id = req.params.id;
-  connection.query('SELECT * FROM ElectricCars WHERE id = ?', [id], (err, results, fields) => {
+  connection.query(`SELECT * FROM \`${tableName}\` WHERE id = ?`, [id], (err, results, fields) => {
     if (err) {
       return res.status(500).send(err);
     }
@@ -105,7 +105,7 @@ app.get('/api/data/:id', (req, res) => {
 // DELETE a row
 app.delete('/api/data/:id', (req, res) => {
   const id = req.params.id;
-  connection.query('DELETE FROM ElectricCars WHERE id = ?', [id], (err) => {
+  connection.query(`DELETE FROM \`${tableName}\` WHERE id = ?`, [id], (err) => {
     if (err) {
       return res.status(500).send(err);
     }
@@ -113,12 +113,9 @@ app.delete('/api/data/:id', (req, res) => {
   });
 });
 
-
-
 // Search in table
 app.get('/api/search', (req, res) => {
   const searchTerm = req.query.q;
-  const tableName = 'ElectricCars'; 
 
   if (!searchTerm) {
     return res.status(400).json({ error: 'Missing search query (?q=)' });
@@ -160,14 +157,7 @@ app.get('/api/search', (req, res) => {
   });
 });
 
-
-
-
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
-
-
