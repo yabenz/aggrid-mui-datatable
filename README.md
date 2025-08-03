@@ -7,6 +7,10 @@ This project is a full-stack web application built with **Vite + React** for the
 ## Project Structure
 
 
+## Project Structure
+
+<pre> ```
+  
 AGGRID-MUI-APP/
 │
 ├── backend/
@@ -41,6 +45,9 @@ AGGRID-MUI-APP/
 ├── package.json                  # Frontend dependencies and scripts
 ├── tsconfig.json                 # TypeScript configuration
 └── README.md
+  
+  
+  ``` </pre>
 
 ---
 
