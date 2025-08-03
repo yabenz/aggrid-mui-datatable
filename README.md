@@ -6,9 +6,6 @@ This project is a full-stack web application built with **Vite + React** for the
 
 ## Project Structure
 
-
-## Project Structure
-
 <pre> ```
   
 AGGRID-MUI-APP/
